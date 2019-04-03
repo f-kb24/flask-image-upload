@@ -7,6 +7,7 @@ import os
 from db import db
 from ma import ma
 from blacklist import BLACKLIST
+from dotenv import load_dotenv
 from resources.user import UserRegister, UserLogin, User, TokenRefresh, UserLogout
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
@@ -14,17 +15,9 @@ from resources.confirmation import Confirmation, ConfirmationByUser
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["PROPAGATE_EXCEPTIONS"] = True
-app.config["JWT_BLACKLIST_ENABLED"] = True  # enable blacklist feature
-app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = [
-    "access",
-    "refresh",
-]  # allow blacklisting for access and refresh tokens
-app.config["JWT_SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
-# we can also use app.secret_key like before, Flask-JWT-Extended can recognize both
-
+load_dotenv(".env", verbose=True)
+app.config.from_object("default_config")
+app.config.from_envvar("APPLICATION_SETTINGS")
 api = Api(app)
 
 
