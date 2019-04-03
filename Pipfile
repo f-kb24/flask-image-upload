@@ -13,6 +13,7 @@ Flask-SQLAlchemy = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 marshmallow = "==3.0.0b12"
+flask-uploads = "*"
 
 [dev-packages]
 
