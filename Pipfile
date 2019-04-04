@@ -16,9 +16,10 @@ marshmallow = "==3.0.0b12"
 flask-uploads = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [pipenv]
 allow_prereleases = true
